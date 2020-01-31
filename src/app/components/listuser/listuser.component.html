@@ -1,0 +1,56 @@
+<div id="content" #content>
+
+  <div class="search-div">
+      <button mat-raised-button (click)="onCreate()">
+          <mat-icon>add</mat-icon>Create
+      </button>
+      <button mat-raised-button (click)="downloadPdf()">
+          <mat-icon>add</mat-icon>PDF
+      </button>
+      <button mat-raised-button>
+          <mat-icon>add</mat-icon>EXCEL
+      </button>
+      <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field fxFlex="40%">
+          <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+  
+  </div>
+     <div class="mat-elevation-z8">
+          <mat-table [dataSource]="listData" matSort>
+              <ng-container matColumnDef="aid" >
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.aid}}</mat-cell>
+              </ng-container>
+      
+              <ng-container matColumnDef="fname">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>First</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.fname}}</mat-cell>
+              </ng-container>
+      
+              <ng-container matColumnDef="lname">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Last</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.lname}}</mat-cell>
+              </ng-container>
+      
+              <ng-container matColumnDef="actions">
+                  <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                      <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+                      <button mat-icon-button color="warn" (click)="deleteUser(row.aid)"><mat-icon>delete_outline</mat-icon></button>
+                  </mat-cell>
+              </ng-container>
+  
+  
+  
+  
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+         
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[3,5,10,15,20]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+  
+  </div>
+  </div>
+        
